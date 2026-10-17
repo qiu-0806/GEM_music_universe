@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="G.E.M. 邓紫棋音乐宇宙：完整专辑图鉴、歌曲列表与歌词库，一键跳转 QQ 音乐收听。" />
+  <title>G.E.M. 邓紫棋 · 音乐宇宙</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 滚动渐变背景 -->
+  <div class="bg-slides" id="bgSlides" aria-hidden="true"></div>
+  <div class="bg-veil" aria-hidden="true"></div>
+
+  <!-- 吸顶导航 -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a class="nav-brand" href="#home" aria-label="返回首页">
+        <span class="logo">G.E.M.</span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="#music">音乐库</a>
+        <a href="#hits">热门单曲</a>
+        <a href="#tour">I AM GLORIA</a>
+        <a href="#gallery">图集</a>
+        <a href="#fanzone">棋士团</a>
+      </nav>
+      <a class="nav-cta" href="https://y.qq.com/n/ryqq/singer/001fNHEf1SFEFN" target="_blank" rel="noopener noreferrer">QQ 音乐收听</a>
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="打开菜单" aria-expanded="false" aria-controls="mobileDrawer">☰</button>
+    </div>
+    <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+      <a href="#music" class="drawer-link">音乐库</a>
+      <a href="#hits" class="drawer-link">热门单曲</a>
+      <a href="#tour" class="drawer-link">I AM GLORIA</a>
+      <a href="#gallery" class="drawer-link">图集</a>
+      <a href="#fanzone" class="drawer-link">棋士团</a>
+      <a class="drawer-link drawer-cta" href="https://y.qq.com/n/ryqq/singer/001fNHEf1SFEFN" target="_blank" rel="noopener noreferrer">QQ 音乐收听 ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <p class="hero-eyebrow">Get Everybody Moving</p>
+        <h1 class="hero-title">G.E.M.</h1>
+        <p class="hero-name">邓紫棋 · 创作歌手</p>
+        <p class="hero-desc">
+          从 2008 年出道 EP 到《启示录》元宇宙，9 张专辑、84 首作品。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://y.qq.com/n/ryqq/singer/001fNHEf1SFEFN" target="_blank" rel="noopener noreferrer">在 QQ 音乐收听</a>
+          <a class="btn btn-secondary" href="#music">浏览专辑</a>
+        </div>
+      </div>
+      <a class="scroll-down" href="#music" aria-label="向下滚动">Scroll</a>
+    </section>
+
+    <!-- 音乐库（专辑 + 歌词） -->
+    <section id="music" class="music section">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-eyebrow">Discography &amp; Lyrics</p>
+          <h2 class="section-title">音乐库</h2>
+          <p class="section-desc" id="librarySummary"></p>
+        </header>
+        <div class="library-toolbar">
+          <div class="view-switch" id="viewSwitch" role="tablist" aria-label="视图切换">
+            <button class="view-btn active" data-view="albums" role="tab" aria-selected="true">专辑</button>
+            <button class="view-btn" data-view="lyrics" role="tab" aria-selected="false">歌词</button>
+          </div>
+          <input type="search" class="search-input" id="librarySearch" placeholder="搜索专辑、歌曲或歌词…" aria-label="搜索音乐库" />
+          <select class="select-input" id="libraryAlbumFilter" aria-label="按专辑筛选">
+            <option value="all">全部专辑</option>
+          </select>
+        </div>
+        <div class="filter-tags" id="albumFilters" role="tablist" aria-label="专辑分类">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">全部</button>
+          <button class="filter-btn" data-filter="album" role="tab" aria-selected="false">录音室专辑</button>
+          <button class="filter-btn" data-filter="ep" role="tab" aria-selected="false">EP</button>
+          <button class="filter-btn" data-filter="hot" role="tab" aria-selected="false">热门</button>
+        </div>
+        <p class="result-count" id="libraryCount"></p>
+        <div class="album-grid" id="albumGrid"></div>
+        <div class="lyric-grid" id="lyricGrid"></div>
+        <p class="empty-state" id="libraryEmpty" style="display:none;">没有找到匹配内容，换个关键词试试。</p>
+      </div>
+    </section>
+
+    <!-- 热门单曲 -->
+    <section id="hits" class="hits section">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-eyebrow">Top Tracks</p>
+          <h2 class="section-title">热门单曲</h2>
+          <p class="section-desc">传唱度最高的代表作，点击即可在 QQ 音乐播放。</p>
+        </header>
+        <ol class="hit-list" id="hitList"></ol>
+      </div>
+    </section>
+
+    <!-- I AM GLORIA 巡演 -->
+    <section id="tour" class="tour section">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-eyebrow">I AM GLORIA World Tour</p>
+          <h2 class="section-title">I AM GLORIA 世界巡演</h2>
+          <p class="section-desc">2023.12.07 广州启程 → 2026.10.05 深圳收官，历时近三年，横跨 3 大洲 7 个国家。</p>
+        </header>
+        <div class="tour-stats">
+          <div class="tour-stat"><span class="tour-stat-value">182</span><span class="tour-stat-label">总场次</span></div>
+          <div class="tour-stat"><span class="tour-stat-value">170</span><span class="tour-stat-label">体育场专场</span></div>
+          <div class="tour-stat"><span class="tour-stat-value">69</span><span class="tour-stat-label">覆盖城市</span></div>
+          <div class="tour-stat"><span class="tour-stat-value">7</span><span class="tour-stat-label">国家 · 3 大洲</span></div>
+        </div>
+        <h3 class="tour-subtitle">巡演里程碑</h3>
+        <div class="tour-milestones" id="tourMilestones"></div>
+        <h3 class="tour-subtitle">演出城市</h3>
+        <div class="filter-bar">
+          <input type="search" class="search-input" id="tourSearch" placeholder="搜索城市…" aria-label="搜索巡演城市" />
+          <div class="filter-tags" id="tourStageFilter" role="tablist" aria-label="巡演阶段">
+            <button class="filter-btn active" data-stage="all" role="tab" aria-selected="true">全部</button>
+            <button class="filter-btn" data-stage="first" role="tab" aria-selected="false">2023–2024 首轮</button>
+            <button class="filter-btn" data-stage="v2" role="tab" aria-selected="false">2025–2026 巡演 2.0</button>
+          </div>
+        </div>
+        <p class="result-count" id="tourCount"></p>
+        <div class="city-wall" id="cityWall"></div>
+        <p class="empty-state" id="tourEmpty" style="display:none;">没有匹配的城市。</p>
+        <p class="tour-note">
+          * 场次与城市整理自公开报道（百度百科、灯塔专业版数据、歌手工作室公告）。巡演已收官，此处仅收录部分公开报道城市，具体日期与场馆以主办方公布为准；购票请前往大麦、猫眼、纷玩岛等官方平台。
+        </p>
+      </div>
+    </section>
+
+    <!-- 图集 -->
+    <section id="gallery" class="gallery section">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-eyebrow">Gallery</p>
+          <h2 class="section-title">G.E.M. 瞬间</h2>
+          <p class="section-desc">舞台与生活碎片，替换「图集图片」文件夹中的图片即可自定义。</p>
+        </header>
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+    </section>
+
+    <!-- 棋士团 -->
+    <section id="fanzone" class="fanzone section">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-eyebrow">Fanzone</p>
+          <h2 class="section-title">棋士团互动墙</h2>
+          <p class="section-desc">抽一句歌词，留下你的应援打卡。</p>
+        </header>
+        <div class="fanzone-grid">
+          <div class="lyrics-machine glass">
+            <h3 class="card-title">随机歌词</h3>
+            <div class="lyric-display" id="lyricDisplay" aria-live="polite">
+              <p class="lyric-text" id="lyricText">点击按钮，随机抽取一句 G.E.M. 歌词。</p>
+              <p class="lyric-song" id="lyricSong">— —</p>
+            </div>
+            <div class="lyric-actions">
+              <button class="btn btn-primary" id="drawLyric">抽取歌词</button>
+              <a class="btn btn-secondary" id="lyricQQLink" href="https://y.qq.com/n/ryqq/singer/001fNHEf1SFEFN" target="_blank" rel="noopener noreferrer">去 QQ 音乐听</a>
+            </div>
+          </div>
+          <div class="guestbook glass">
+            <h3 class="card-title">应援留言</h3>
+            <form class="guestbook-form" id="guestbookForm">
+              <input type="text" name="name" class="form-input" placeholder="你的昵称" maxlength="20" />
+              <textarea name="message" class="form-textarea" placeholder="写下你的应援、现场回忆或最爱的歌词…" required maxlength="140" rows="3"></textarea>
+              <button type="submit" class="btn btn-primary">打卡留言</button>
+            </form>
+            <ul class="guestbook-list" id="guestbookList" aria-label="留言列表"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <span class="logo">G.E.M.</span>
+        <p>邓紫棋 音乐宇宙 · Get Everybody Moving</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://y.qq.com/n/ryqq/singer/001fNHEf1SFEFN" target="_blank" rel="noopener noreferrer">QQ 音乐</a>
+        <a href="https://www.iamgem.com/" target="_blank" rel="noopener noreferrer">官方网站</a>
+        <a href="https://www.instagram.com/gem.official/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.weibo.com/gemtang" target="_blank" rel="noopener noreferrer">微博</a>
+        <a href="https://www.youtube.com/@GEMUSIC" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <p>© 2026 G.E.M. 粉丝向展示页面。专辑、歌曲与歌词版权归原权利人所有，播放由 QQ 音乐提供。</p>
+    </div>
+  </footer>
+
+  <!-- 专辑详情弹窗 -->
+  <div class="modal" id="albumModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content glass" role="document">
+      <button class="modal-close" id="modalClose" aria-label="关闭弹窗">×</button>
+      <div class="modal-header" id="modalHeader"></div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="albums.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
